@@ -1,3 +1,8 @@
+<script setup>
+import AppContent from "@/layouts/AppContent.vue"
+import { SunIcon } from "@heroicons/vue/outline"
+</script>
+
 <template>
   <div>
     <section>
@@ -77,14 +82,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import AppContent from "@/layouts/AppContent.vue"
-
-import { SunIcon } from "@heroicons/vue/outline"
-
-export default {
-  components: { AppContent, SunIcon },
-  setup() {},
-}
-</script>

@@ -1,3 +1,31 @@
+<script setup>
+import VTransitionFade from "@/components/VTransitionFade.vue"
+import { navigation } from "@/const"
+import { useAuthUserStore } from "@/stores/auth"
+import { useCartStore } from "@/stores/cart"
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue"
+import {
+  MenuIcon,
+  ShoppingBagIcon,
+  UserIcon,
+  XIcon,
+} from "@heroicons/vue/outline"
+import { ref, watch } from "vue"
+import { useRoute } from "vue-router"
+
+const route = useRoute()
+const isHome = ref(route.name == "Home")
+const store = useAuthUserStore()
+const cartStore = useCartStore()
+
+watch(
+  () => route.name,
+  (newName) => {
+    isHome.value = newName == "Home"
+  }
+)
+</script>
+
 <template>
   <div class="relative">
     <VTransitionFade>
@@ -304,60 +332,3 @@
     </VTransitionFade>
   </div>
 </template>
-
-<script>
-import { ref, watch } from "vue"
-import { useRoute } from "vue-router"
-import {
-  MenuIcon,
-  ShoppingBagIcon,
-  UserIcon,
-  XIcon,
-  PhotographIcon,
-  LockClosedIcon,
-  HomeIcon,
-} from "@heroicons/vue/outline"
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue"
-import { useAuthUserStore } from "@/stores/auth"
-import { useCartStore } from "@/stores/cart"
-import { navigation } from "@/const"
-import VTransitionFade from "@/components/VTransitionFade.vue"
-
-export default {
-  components: {
-    MenuIcon,
-    ShoppingBagIcon,
-    UserIcon,
-    XIcon,
-    PhotographIcon,
-    LockClosedIcon,
-    HomeIcon,
-    Popover,
-    PopoverButton,
-    PopoverPanel,
-    VTransitionFade,
-  },
-  setup() {
-    const open = ref(false)
-    const route = useRoute()
-    const isHome = ref(route.name == "Home")
-    const store = useAuthUserStore()
-    const cartStore = useCartStore()
-
-    watch(
-      () => route.name,
-      (newName) => {
-        isHome.value = newName == "Home"
-      }
-    )
-
-    return {
-      navigation,
-      open,
-      isHome,
-      cartStore,
-      store,
-    }
-  },
-}
-</script>

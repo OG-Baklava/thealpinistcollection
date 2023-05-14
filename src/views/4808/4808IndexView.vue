@@ -1,3 +1,7 @@
+<script setup>
+import AppContent from "@/layouts/AppContent.vue"
+</script>
+
 <template>
   <div>
     <section>
@@ -69,13 +73,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import AppContent from "@/layouts/AppContent.vue"
-
-export default {
-  components: {
-    AppContent,
-  },
-}
-</script>

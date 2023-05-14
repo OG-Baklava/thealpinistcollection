@@ -1,3 +1,23 @@
+<script setup>
+import { useNotificationStore } from "@/stores/notifications"
+import { BanIcon, CheckCircleIcon } from "@heroicons/vue/outline"
+import { XIcon } from "@heroicons/vue/solid"
+
+const icons = {
+  success: {
+    icon: CheckCircleIcon,
+    color: "text-green-400",
+  },
+  error: {
+    icon: BanIcon,
+    color: "text-red-400",
+  },
+}
+
+const store = useNotificationStore()
+const close = (index) => store.remove(index)
+</script>
+
 <template>
   <div
     aria-live="assertive"
@@ -53,34 +73,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { useNotificationStore } from "@/stores/notifications"
-import { CheckCircleIcon, BanIcon } from "@heroicons/vue/outline"
-import { XIcon } from "@heroicons/vue/solid"
-
-const icons = {
-  success: {
-    icon: CheckCircleIcon,
-    color: "text-green-400",
-  },
-  error: {
-    icon: BanIcon,
-    color: "text-red-400",
-  },
-}
-
-export default {
-  components: { XIcon, CheckCircleIcon },
-  setup() {
-    const store = useNotificationStore()
-    const close = (index) => store.remove(index)
-
-    return {
-      store,
-      close,
-      icons,
-    }
-  },
-}
-</script>

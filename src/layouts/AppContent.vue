@@ -1,3 +1,12 @@
+<script setup>
+const props = defineProps({
+  textCenter: {
+    type: Boolean,
+    default: false,
+  },
+})
+</script>
+
 <template>
   <div
     :class="[
@@ -10,19 +19,3 @@
     <slot></slot>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    textCenter: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(props) {
-    return {
-      props,
-    }
-  },
-}
-</script>

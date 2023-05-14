@@ -1,3 +1,15 @@
+<script setup>
+import Heading from "@/components/Heading.vue"
+import VTabs from "@/components/VTabs.vue"
+import VTransitionFade from "@/components/VTransitionFade.vue"
+import LayoutContainer from "@/layouts/LayoutContainer.vue"
+
+const tabs = [
+  { name: "Infos", to: { name: "4808Index" } },
+  { name: "Réservation", to: { name: "4808Booking" } },
+]
+</script>
+
 <template>
   <div>
     <div>
@@ -23,29 +35,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import Heading from "@/components/Heading.vue"
-import LayoutContainer from "@/layouts/LayoutContainer.vue"
-import VTabs from "@/components/VTabs.vue"
-import VTransitionFade from "@/components/VTransitionFade.vue"
-
-const tabs = [
-  { name: "Infos", to: { name: "4808Index" } },
-  { name: "Réservation", to: { name: "4808Booking" } },
-]
-
-export default {
-  components: {
-    Heading,
-    LayoutContainer,
-    VTabs,
-    VTransitionFade,
-  },
-  setup() {
-    return {
-      tabs,
-    }
-  },
-}
-</script>

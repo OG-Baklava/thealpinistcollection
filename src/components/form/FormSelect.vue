@@ -1,3 +1,30 @@
+<script setup>
+import { useField } from "vee-validate"
+import { toRefs } from "vue"
+
+const props = defineProps({
+  label: String,
+  identifier: String,
+  options: Array,
+  required: {
+    type: Boolean,
+    default: true,
+  },
+})
+
+const { label, identifier, options, required } = toRefs(props)
+const isRequired = (value) => {
+  if (value && value.trim()) {
+    return true
+  }
+  return "Le champ est requis"
+}
+const { value, errorMessage } = useField(
+  identifier,
+  required.value ? isRequired : null
+)
+</script>
+
 <template>
   <div>
     <label :for="identifier" class="block text-sm font-medium text-primary">{{
@@ -21,41 +48,3 @@
     <p class="mt-2 text-sm text-red-600">{{ errorMessage }}</p>
   </div>
 </template>
-
-<script>
-import { toRefs } from "vue"
-import { useField } from "vee-validate"
-
-export default {
-  props: {
-    label: String,
-    identifier: String,
-    options: Array,
-    required: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  setup(props, { emit }) {
-    const { label, identifier, options, required } = toRefs(props)
-    const isRequired = (value) => {
-      if (value && value.trim()) {
-        return true
-      }
-      return "Le champ est requis"
-    }
-    const { value, errorMessage } = useField(
-      identifier,
-      required.value ? isRequired : null
-    )
-    return {
-      label,
-      identifier,
-      options,
-      value,
-      errorMessage,
-      emit,
-    }
-  },
-}
-</script>

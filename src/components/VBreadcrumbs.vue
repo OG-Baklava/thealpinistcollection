@@ -1,3 +1,12 @@
+<script setup>
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/solid"
+
+const props = defineProps({
+  breads: Array,
+  returnLink: String,
+})
+</script>
+
 <template>
   <div>
     <nav class="sm:hidden" aria-label="Back">
@@ -35,23 +44,3 @@
     </nav>
   </div>
 </template>
-
-<script>
-import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/vue/solid"
-
-export default {
-  components: {
-    ChevronRightIcon,
-    ChevronLeftIcon,
-  },
-  props: {
-    breads: Array,
-    returnLink: String,
-  },
-  setup(props) {
-    return {
-      props,
-    }
-  },
-}
-</script>

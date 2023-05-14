@@ -1,31 +1,23 @@
-<template>
-  <Alert :data="data" />
-</template>
+<script setup>
+import { CheckCircleIcon } from "@heroicons/vue/24/solid"
+import VAlert from "./components/Alert.vue"
 
-<script>
-import { CheckCircleIcon } from "@heroicons/vue/solid"
-import Alert from "./components/Alert.vue"
-
-export default {
-  components: {
-    Alert,
-  },
-  props: {
-    title: String,
-    text: String,
-  },
-  setup(props) {
-    return {
-      data: {
-        title: props.title,
-        text: props.text,
-        bgColor: "bg-primary bg-opacity-50",
-        iconColor: "text-white",
-        titleColor: "text-white",
-        textColor: "text-white",
-        icon: CheckCircleIcon,
-      },
-    }
-  },
-}
+const props = defineProps({
+  title: String,
+  text: String,
+})
 </script>
+<template>
+  <VAlert
+    :data="{
+      title: props.title,
+      text: props.text,
+      bgColor: 'bg-green-500/10',
+      ringColor: 'ring-green-500/20',
+      iconColor: 'text-green-400',
+      titleColor: 'text-green-400',
+      textColor: 'text-green-400',
+      icon: CheckCircleIcon,
+    }"
+  />
+</template>

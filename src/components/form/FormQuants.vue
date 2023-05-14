@@ -1,44 +1,28 @@
-<script>
+<script setup>
 import { PlusIcon } from "@heroicons/vue/solid"
 import { reactive, toRefs } from "vue"
 
-export default {
-  components: {
-    PlusIcon,
-  },
-  props: {
-    label: String,
-    identifier: String,
-    text: String,
-    quantsData: Array,
-  },
-  setup(props, { emit }) {
-    const { label, identifier, text, quantsData } = toRefs(props)
-    const quantsForm = reactive({
-      price: 0,
-      qty: 0.0,
-      text: "",
-    })
-    const onAddQty = () => {
-      quantsData.value.push({
-        price: quantsForm.price,
-        qty: quantsForm.qty,
-        text: quantsForm.text,
-      })
-    }
-    const onDelete = (idx) => quantsData.value.splice(idx, 1)
-    return {
-      label,
-      identifier,
-      text,
-      emit,
-      quantsForm,
-      quantsData,
-      onAddQty,
-      onDelete,
-    }
-  },
+const props = defineProps({
+  label: String,
+  identifier: String,
+  text: String,
+  quantsData: Array,
+})
+
+const { label, identifier, text, quantsData } = toRefs(props)
+const quantsForm = reactive({
+  price: 0,
+  qty: 0.0,
+  text: "",
+})
+const onAddQty = () => {
+  quantsData.value.push({
+    price: quantsForm.price,
+    qty: quantsForm.qty,
+    text: quantsForm.text,
+  })
 }
+const onDelete = (idx) => quantsData.value.splice(idx, 1)
 </script>
 
 <template>

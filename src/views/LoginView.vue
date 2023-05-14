@@ -1,3 +1,17 @@
+<script setup>
+import Input from "@/components/form/Input.vue"
+import { useAuthUserStore } from "@/stores/auth"
+import { useForm } from "vee-validate"
+
+const store = useAuthUserStore()
+
+const { handleSubmit } = useForm()
+
+const onSubmit = handleSubmit(async (values) => {
+  await store.login(values)
+})
+</script>
+
 <template>
   <div>
     <section>
@@ -48,33 +62,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import Input from "@/components/form/Input.vue"
-import { useAuthUserStore } from "@/stores/auth"
-import { useForm } from "vee-validate"
-import { ref } from "vue"
-
-export default {
-  components: {
-    Input,
-  },
-  setup() {
-    const success = ref(false)
-    const error = ref(false)
-    const store = useAuthUserStore()
-
-    const { handleSubmit } = useForm()
-
-    const onSubmit = handleSubmit(async (values) => {
-      await store.login(values)
-    })
-
-    return {
-      success,
-      error,
-      onSubmit,
-    }
-  },
-}
-</script>

@@ -1,3 +1,35 @@
+<script setup>
+import { useField } from "vee-validate"
+import { toRefs } from "vue"
+
+const props = defineProps({
+  label: String,
+  identifier: String,
+  text: String,
+  required: {
+    type: Boolean,
+    default: false,
+  },
+  val: {
+    type: String,
+    default: "",
+  },
+})
+
+const { label, identifier, text, required, val } = toRefs(props)
+const isRequired = (value) => {
+  if (value) {
+    return true
+  }
+  return "Le champ est requis"
+}
+const { value, errorMessage } = useField(
+  identifier,
+  required.value ? isRequired : null
+)
+value.value = val.value != "" ? val.value : value.value
+</script>
+
 <template>
   <div class="relative flex items-start">
     <div class="flex items-center h-5">
@@ -19,46 +51,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { useField } from "vee-validate"
-import { toRefs } from "vue"
-
-export default {
-  props: {
-    label: String,
-    identifier: String,
-    text: String,
-    required: {
-      type: Boolean,
-      default: false,
-    },
-    val: {
-      type: String,
-      default: "",
-    },
-  },
-  setup(props, { emit }) {
-    const { label, identifier, text, required, val } = toRefs(props)
-    const isRequired = (value) => {
-      if (value) {
-        return true
-      }
-      return "Le champ est requis"
-    }
-    const { value, errorMessage } = useField(
-      identifier,
-      required.value ? isRequired : null
-    )
-    value.value = val.value != "" ? val.value : value.value
-    return {
-      label,
-      identifier,
-      text,
-      value,
-      errorMessage,
-      emit,
-    }
-  },
-}
-</script>

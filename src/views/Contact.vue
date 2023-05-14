@@ -1,3 +1,35 @@
+<script setup>
+import VSpin from "@/components/VSpin.vue"
+import ErrorAlert from "@/components/alerts/Error.vue"
+import SuccessAlert from "@/components/alerts/Success.vue"
+import Input from "@/components/form/Input.vue"
+import Textarea from "@/components/form/Textarea.vue"
+import { contactService } from "@/services/index"
+import { useForm } from "vee-validate"
+import { reactive } from "vue"
+import Heading from "../components/Heading.vue"
+
+const state = reactive({
+  error: false,
+  success: false,
+  loading: false,
+})
+
+const { handleSubmit, resetForm } = useForm()
+
+const onSubmit = handleSubmit(async (values) => {
+  state.loading = true
+  try {
+    await contactService.create(values)
+    state.success = true
+    resetForm()
+  } catch {
+    state.error = true
+  }
+  state.loading = false
+})
+</script>
+
 <template>
   <div>
     <Heading
@@ -75,52 +107,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import VSpin from "@/components/VSpin.vue"
-import ErrorAlert from "@/components/alerts/Error.vue"
-import SuccessAlert from "@/components/alerts/Success.vue"
-import Input from "@/components/form/Input.vue"
-import Textarea from "@/components/form/Textarea.vue"
-import { contactService } from "@/services/index"
-import { useForm } from "vee-validate"
-import { reactive } from "vue"
-import Heading from "../components/Heading.vue"
-
-export default {
-  components: {
-    Heading,
-    Input,
-    Textarea,
-    SuccessAlert,
-    ErrorAlert,
-    VSpin,
-  },
-  setup() {
-    const state = reactive({
-      error: false,
-      success: false,
-      loading: false,
-    })
-
-    const { handleSubmit, resetForm } = useForm()
-
-    const onSubmit = handleSubmit(async (values) => {
-      state.loading = true
-      try {
-        await contactService.create(values)
-        state.success = true
-        resetForm()
-      } catch {
-        state.error = true
-      }
-      state.loading = false
-    })
-
-    return {
-      state,
-      onSubmit,
-    }
-  },
-}
-</script>

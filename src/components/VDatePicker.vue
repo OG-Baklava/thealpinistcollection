@@ -1,3 +1,32 @@
+<script setup>
+import Datepicker from "@vuepic/vue-datepicker"
+import "@vuepic/vue-datepicker/dist/main.css"
+import { ref, watch } from "vue"
+
+const props = defineProps({
+  modelValue: Object,
+  allowedDates: {
+    type: Array,
+    default: [],
+  },
+  disabledDates: {
+    type: Array,
+    default: [],
+  },
+  multi: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+const emit = defineEmits(["update:modelValue"])
+
+const date = ref(props.modelValue)
+watch(date, (newValue) => {
+  emit("update:modelValue", newValue)
+})
+</script>
+
 <template>
   <Datepicker
     id="date"
@@ -15,44 +44,6 @@
     class="mt-1"
   />
 </template>
-
-<script>
-import Datepicker from "@vuepic/vue-datepicker"
-import "@vuepic/vue-datepicker/dist/main.css"
-import { ref, watch } from "vue"
-
-export default {
-  components: {
-    Datepicker,
-  },
-  props: {
-    modelValue: Object,
-    allowedDates: {
-      type: Array,
-      default: [],
-    },
-    disabledDates: {
-      type: Array,
-      default: [],
-    },
-    multi: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const date = ref(props.modelValue)
-    watch(date, (newValue) => {
-      emit("update:modelValue", newValue)
-    })
-    return {
-      props,
-      date,
-    }
-  },
-}
-</script>
 
 <style>
 .dp__theme_dark {

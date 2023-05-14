@@ -1,3 +1,64 @@
+<script setup>
+import { computed, toRefs } from "vue"
+
+const props = defineProps({
+  animationDuration: {
+    type: Number,
+    default: 1000,
+  },
+  dotSize: {
+    type: Number,
+    default: 15,
+  },
+  dotsNum: {
+    type: Number,
+    default: 3,
+  },
+  color: {
+    type: String,
+    default: "rgb(66, 184, 131)",
+  },
+})
+
+const { animationDuration, dotSize, dotsNum, color } = toRefs(props)
+
+const horizontalMargin = computed(() => dotSize.value)
+
+const spinnerStyle = computed(() => {
+  return {
+    height: `${dotSize.value}px`,
+    width: `${(dotSize.value + horizontalMargin.value * 2) * dotsNum.value}px`,
+  }
+})
+
+const dotStyle = computed(() => {
+  return {
+    animationDuration: `${animationDuration.value}ms`,
+    width: `${dotSize.value}px`,
+    height: `${dotSize.value}px`,
+    margin: `0 ${horizontalMargin.value}px`,
+    borderWidth: `${dotSize.value / 5}px`,
+    borderColor: color.value,
+  }
+})
+
+const dotsStyles = computed(() => {
+  const dotsStyles = []
+  const delayModifier = 0.3
+  const basicDelay = 1000
+  for (let i = 1; i <= dotsNum.value; i++) {
+    const style = Object.assign(
+      {
+        animationDelay: `${basicDelay * i * delayModifier}ms`,
+      },
+      dotStyle.value
+    )
+    dotsStyles.push(style)
+  }
+  return dotsStyles
+})
+</script>
+
 <template>
   <div class="hollow-dots-spinner mx-auto" :style="spinnerStyle">
     <div
@@ -8,76 +69,6 @@
     ></div>
   </div>
 </template>
-
-<script>
-import { computed, toRefs } from "vue"
-
-export default {
-  props: {
-    animationDuration: {
-      type: Number,
-      default: 1000,
-    },
-    dotSize: {
-      type: Number,
-      default: 15,
-    },
-    dotsNum: {
-      type: Number,
-      default: 3,
-    },
-    color: {
-      type: String,
-      default: "rgb(66, 184, 131)",
-    },
-  },
-  setup(props) {
-    const { animationDuration, dotSize, dotsNum, color } = toRefs(props)
-
-    const horizontalMargin = computed(() => dotSize.value)
-
-    const spinnerStyle = computed(() => {
-      return {
-        height: `${dotSize.value}px`,
-        width: `${
-          (dotSize.value + horizontalMargin.value * 2) * dotsNum.value
-        }px`,
-      }
-    })
-
-    const dotStyle = computed(() => {
-      return {
-        animationDuration: `${animationDuration.value}ms`,
-        width: `${dotSize.value}px`,
-        height: `${dotSize.value}px`,
-        margin: `0 ${horizontalMargin.value}px`,
-        borderWidth: `${dotSize.value / 5}px`,
-        borderColor: color.value,
-      }
-    })
-
-    const dotsStyles = computed(() => {
-      const dotsStyles = []
-      const delayModifier = 0.3
-      const basicDelay = 1000
-      for (let i = 1; i <= dotsNum.value; i++) {
-        const style = Object.assign(
-          {
-            animationDelay: `${basicDelay * i * delayModifier}ms`,
-          },
-          dotStyle.value
-        )
-        dotsStyles.push(style)
-      }
-      return dotsStyles
-    })
-    return {
-      spinnerStyle,
-      dotsStyles,
-    }
-  },
-}
-</script>
 
 <style scoped>
 .hollow-dots-spinner,

@@ -1,3 +1,46 @@
+<script setup>
+import VDatePicker from "@/components/VDatePicker.vue"
+import VSpin from "@/components/VSpin.vue"
+import ErrorAlert from "@/components/alerts/Error.vue"
+import SuccessAlert from "@/components/alerts/Success.vue"
+import Input from "@/components/form/Input.vue"
+import { mayenBookingService } from "@/services"
+import { useForm } from "vee-validate"
+import { reactive, ref } from "vue"
+
+const { handleSubmit, resetForm } = useForm()
+const modelDate = ref()
+const state = reactive({
+  error: false,
+  bookRef: null,
+  success: false,
+  sendError: false,
+  sendLoading: false,
+})
+
+const onSubmit = handleSubmit(async (values) => {
+  state.sendLoading = true
+  if (!modelDate.value) {
+    state.error = true
+    state.sendLoading = false
+    return
+  }
+  try {
+    const bookRef = await mayenBookingService.create({
+      ...values,
+      dates: modelDate.value,
+    })
+    state.bookRef = bookRef
+    state.success = true
+    resetForm()
+    modelDate.value = null
+  } catch (error) {
+    state.sendError = true
+  }
+  state.sendLoading = false
+})
+</script>
+
 <template>
   <div>
     <section>
@@ -74,65 +117,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import Input from "@/components/form/Input.vue"
-import VSpin from "@/components/VSpin.vue"
-import Textarea from "@/components/form/Textarea.vue"
-import ErrorAlert from "@/components/alerts/Error.vue"
-import SuccessAlert from "@/components/alerts/Success.vue"
-import { mayenBookingService } from "@/services"
-import VDatePicker from "@/components/VDatePicker.vue"
-import { useForm } from "vee-validate"
-import { ref, reactive } from "vue"
-
-export default {
-  components: {
-    Input,
-    Textarea,
-    VDatePicker,
-    VSpin,
-    ErrorAlert,
-    SuccessAlert,
-  },
-  setup() {
-    const { handleSubmit, resetForm } = useForm()
-    const modelDate = ref()
-    const state = reactive({
-      error: false,
-      bookRef: null,
-      success: false,
-      sendError: false,
-      sendLoading: false,
-    })
-
-    const onSubmit = handleSubmit(async (values) => {
-      state.sendLoading = true
-      if (!modelDate.value) {
-        state.error = true
-        state.sendLoading = false
-        return
-      }
-      try {
-        const bookRef = await mayenBookingService.create({
-          ...values,
-          dates: modelDate.value,
-        })
-        state.bookRef = bookRef
-        state.success = true
-        resetForm()
-        modelDate.value = null
-      } catch (error) {
-        state.sendError = true
-      }
-      state.sendLoading = false
-    })
-
-    return {
-      onSubmit,
-      state,
-      modelDate,
-    }
-  },
-}
-</script>

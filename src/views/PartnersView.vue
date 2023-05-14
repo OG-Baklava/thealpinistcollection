@@ -1,3 +1,49 @@
+<script setup>
+import Heading from "@/components/Heading.vue"
+import LayoutContainer from "@/layouts/LayoutContainer.vue"
+
+const features = [
+  { name: "Les Mines de Sel", description: "Bex" },
+  { name: "La Fromathèque", description: "Martigny" },
+  {
+    name: "L’Œnothèque Fol’terre",
+    description: "Fully",
+  },
+  {
+    name: "La Potagère",
+    description: "Saint Pierre de Clage",
+  },
+  {
+    name: "Le Terroir",
+    description: "Crans-Montana",
+  },
+  {
+    name: "Néa Bar",
+    description: "Crans-Montana",
+  },
+  {
+    name: "La Piccolina",
+    description: "Crans-Montana",
+  },
+  {
+    name: "Le Tirebouchon",
+    description: "Crans-Montana",
+  },
+  {
+    name: "Chez Martine",
+    description: "Lens",
+  },
+  {
+    name: "Del Genio",
+    description: "Sion",
+  },
+  {
+    name: "Iris",
+    description: "Riddes",
+  },
+]
+</script>
+
 <template>
   <div>
     <div>
@@ -26,60 +72,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import Heading from "@/components/Heading.vue"
-import LayoutContainer from "@/layouts/LayoutContainer.vue"
-
-export default {
-  components: {
-    Heading,
-    LayoutContainer,
-  },
-  setup() {
-    const features = [
-      { name: "Les Mines de Sel", description: "Bex" },
-      { name: "La Fromathèque", description: "Martigny" },
-      {
-        name: "L’Œnothèque Fol’terre",
-        description: "Fully",
-      },
-      {
-        name: "La Potagère",
-        description: "Saint Pierre de Clage",
-      },
-      {
-        name: "Le Terroir",
-        description: "Crans-Montana",
-      },
-      {
-        name: "Néa Bar",
-        description: "Crans-Montana",
-      },
-      {
-        name: "La Piccolina",
-        description: "Crans-Montana",
-      },
-      {
-        name: "Le Tirebouchon",
-        description: "Crans-Montana",
-      },
-      {
-        name: "Chez Martine",
-        description: "Lens",
-      },
-      {
-        name: "Del Genio",
-        description: "Sion",
-      },
-      {
-        name: "Iris",
-        description: "Riddes",
-      },
-    ]
-    return {
-      features,
-    }
-  },
-}
-</script>

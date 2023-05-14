@@ -1,38 +1,4 @@
-<template>
-  <footer>
-    <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-      <nav
-        class="-mx-5 -my-2 flex flex-wrap justify-center"
-        aria-label="Footer"
-      >
-        <div v-for="item in navigation.main" :key="item.name" class="px-5 py-2">
-          <router-link
-            :to="item.href"
-            class="text-base text-white hover:text-primary transition-colors"
-          >
-            {{ item.name }}
-          </router-link>
-        </div>
-      </nav>
-      <div class="mt-8 flex justify-center space-x-6">
-        <a
-          v-for="item in navigation.social"
-          :key="item.name"
-          :href="item.href"
-          target="_blank"
-          class="text-white hover:text-primary transition-colors"
-        >
-          <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
-        </a>
-      </div>
-      <p class="mt-8 text-center text-base text-gray-400">
-        &copy; 2023 The Alpinist Collection. All rights reserved.
-      </p>
-    </div>
-  </footer>
-</template>
-
-<script>
+<script setup>
 import { defineComponent, h } from "vue"
 
 const navigation = {
@@ -74,12 +40,38 @@ const navigation = {
     },
   ],
 }
-
-export default {
-  setup() {
-    return {
-      navigation,
-    }
-  },
-}
 </script>
+
+<template>
+  <footer>
+    <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+      <nav
+        class="-mx-5 -my-2 flex flex-wrap justify-center"
+        aria-label="Footer"
+      >
+        <div v-for="item in navigation.main" :key="item.name" class="px-5 py-2">
+          <router-link
+            :to="item.href"
+            class="text-base text-white hover:text-primary transition-colors"
+          >
+            {{ item.name }}
+          </router-link>
+        </div>
+      </nav>
+      <div class="mt-8 flex justify-center space-x-6">
+        <a
+          v-for="item in navigation.social"
+          :key="item.name"
+          :href="item.href"
+          target="_blank"
+          class="text-white hover:text-primary transition-colors"
+        >
+          <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
+        </a>
+      </div>
+      <p class="mt-8 text-center text-base text-gray-400">
+        &copy; 2023 The Alpinist Collection. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</template>

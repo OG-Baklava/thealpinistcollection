@@ -1,3 +1,18 @@
+<script setup>
+import VTabs from "@/components/VTabs.vue"
+import LayoutContainer from "@/layouts/LayoutContainer.vue"
+import { useAuthUserStore } from "@/stores/auth"
+
+const tabs = [
+  { name: "Nouveau produit", to: { name: "AdminIndex" }, current: true },
+  { name: "Produits", to: { name: "AdminProducts" } },
+  { name: "Réservation Guérite", to: { name: "AdminGueriteBooking" } },
+  { name: "Coupon Guérite", to: { name: "AdminGueriteCoupon" } },
+]
+
+const store = useAuthUserStore()
+</script>
+
 <template>
   <div>
     <LayoutContainer>
@@ -7,7 +22,7 @@
         >
           Administration
         </h2>
-        <button class="button-primary-small" @click="logout()">
+        <button class="button-primary-small" @click="store.logout()">
           Se déconnecter
         </button>
       </div>
@@ -20,36 +35,6 @@
     </LayoutContainer>
   </div>
 </template>
-
-<script>
-import VTabs from "@/components/VTabs.vue"
-import LayoutContainer from "@/layouts/LayoutContainer.vue"
-import { useAuthUserStore } from "@/stores/auth"
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/solid"
-
-const tabs = [
-  { name: "Nouveau produit", to: { name: "AdminIndex" }, current: true },
-  { name: "Produits", to: { name: "AdminProducts" } },
-  { name: "Réservation Guérite", to: { name: "AdminGueriteBooking" } },
-  { name: "Coupon Guérite", to: { name: "AdminGueriteCoupon" } },
-]
-
-export default {
-  components: {
-    ChevronLeftIcon,
-    ChevronRightIcon,
-    LayoutContainer,
-    VTabs,
-  },
-  setup() {
-    const store = useAuthUserStore()
-    return {
-      tabs,
-      logout: async () => await store.logout(),
-    }
-  },
-}
-</script>
 
 <style scoped>
 .fade-enter-active,

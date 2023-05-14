@@ -1,3 +1,11 @@
+<script setup>
+import { navigation } from "@/const"
+import { useRouter } from "vue-router"
+
+const router = useRouter()
+const goTo = (to) => router.push(to)
+</script>
+
 <template>
   <div>
     <section class="py-12 md:py-20 lg:py-24">
@@ -282,20 +290,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import { navigation } from "@/const"
-import { useRouter } from "vue-router"
-
-export default {
-  setup() {
-    const router = useRouter()
-    const goTo = (to) => router.push(to)
-
-    return {
-      navigation,
-      goTo,
-    }
-  },
-}
-</script>

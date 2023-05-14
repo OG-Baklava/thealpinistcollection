@@ -1,3 +1,8 @@
+<script setup>
+import Heading from "@/components/Heading.vue"
+import AppContent from "@/layouts/AppContent.vue"
+</script>
+
 <template>
   <div>
     <div>
@@ -176,15 +181,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import Heading from "@/components/Heading.vue"
-import AppContent from "@/layouts/AppContent.vue"
-
-export default {
-  components: {
-    Heading,
-    AppContent,
-  },
-}
-</script>
