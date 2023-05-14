@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	function isAdmin() {
+    	return request.auth.uid != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
+    }
+  
+    match /products/{productId} {
+      allow write: if isAdmin();
+      allow read: if true;
+    }
+		match /bookSettings/{settingsId} {
+    	allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /gueriteBookings/{bookId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /gueriteCustomerBooking/{bookId} {
+      allow get: if true;
+      allow create, update, delete, list: if isAdmin();
+    }
+    match /gueriteCoupon/{couponId} {
+    	allow read, write: if isAdmin();
+    }
+    
+    match /the4808Booking/{bookId} {
+      allow create: if true;
+      allow update, delete, read: if isAdmin();
+    }
+    
+    match /mayenBooking/{bookId} {
+      allow create: if true;
+      allow update, delete, read: if isAdmin();
+    }
+    
+    match /contact/{contactId} {
+    	allow create: if true;
+    }
+    
+    match /checkout/{checkoutId} {
+      allow get: if true;
+      allow create, list, write, delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+  }
+}

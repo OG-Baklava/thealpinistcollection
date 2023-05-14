@@ -1,0 +1,40 @@
+{
+  "name": "alpinistcollection",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write"
+  },
+  "dependencies": {
+    "@stripe/stripe-js": "^1.52.1",
+    "@vuepic/vue-datepicker": "^3.6.8",
+    "firebase": "^9.21.0",
+    "pinia": "^2.0.36",
+    "v-calendar": "3.0.0-alpha.8",
+    "vee-validate": "4.8.6",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vuefire": "3.0.1"
+  },
+  "devDependencies": {
+    "@headlessui/vue": "^1.7.13",
+    "@heroicons/vue": "^1.0.6",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.9",
+    "@vitejs/plugin-vue": "^4.2.1",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-vue": "^8.7.1",
+    "postcss": "^8.4.23",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.3.5"
+  }
+}
