@@ -70,6 +70,12 @@ class GueriteBookingService {
       used: false,
     })
   }
+  async closeCoupon(couponId) {
+    const ref = doc(this.db, "gueriteCoupon", couponId)
+    await updateDoc(ref, {
+      used: true,
+    })
+  }
   async getBook(bookId) {
     const document = await getDoc(
       doc(this.db, "gueriteCustomerBooking", bookId)

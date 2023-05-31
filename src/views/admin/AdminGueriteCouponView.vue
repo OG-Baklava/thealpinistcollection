@@ -82,20 +82,20 @@ const onSubmit = handleSubmit(async (values) => {
           class="lg:col-span-2 grid grid-cols-1 gap-y-6 sm:grid-cols-4 sm:gap-x-8"
         >
           <div
-            v-for="(book, idx) in data"
-            :key="book.id"
+            v-for="coupon in data"
+            :key="coupon.id"
             class="bg-neutral-800 shadow overflow-hidden sm:rounded-lg"
           >
             <div class="px-4 py-5 sm:px-6 flex justify-between">
               <div>
                 <h3 class="text-lg leading-6 font-medium text-white">
-                  {{ book.data.identifier }}
+                  {{ coupon.data.identifier }}
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-neutral-300">
-                  {{ book.data.amount.toFixed(2) }}.- CHF
+                  {{ coupon.data.amount.toFixed(2) }}.- CHF
                 </p>
               </div>
-              <div v-if="book.data.used">
+              <div v-if="coupon.data.used">
                 <span
                   class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium text-white bg-red-500"
                 >
@@ -112,17 +112,17 @@ const onSubmit = handleSubmit(async (values) => {
                 </span>
               </div>
             </div>
-            <!-- <div class="p-4 flex justify-end">
+            <div class="p-4 flex justify-end">
               <div class="space-x-2">
                 <button
                   class="button-danger-small"
-                  :disabled="book.data.used"
-                  @click="gueriteBookingService.close(book.id)"
+                  :disabled="coupon.data.used"
+                  @click="gueriteBookingService.closeCoupon(coupon.id)"
                 >
                   Fermer
                 </button>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
