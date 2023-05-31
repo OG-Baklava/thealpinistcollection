@@ -1,5 +1,5 @@
 <script setup>
-import { CheckCircleIcon } from "@heroicons/vue/24/solid"
+import { CheckCircleIcon } from "@heroicons/vue/solid"
 import VAlert from "./components/Alert.vue"
 
 const props = defineProps({

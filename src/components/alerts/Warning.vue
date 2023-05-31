@@ -1,5 +1,5 @@
 <script setup>
-import { ExclamationTriangleIcon } from "@heroicons/vue/24/solid"
+import { ExclamationIcon } from "@heroicons/vue/solid"
 import VAlert from "./components/Alert.vue"
 
 const props = defineProps({
@@ -17,7 +17,7 @@ const props = defineProps({
       iconColor: 'text-yellow-500',
       titleColor: 'text-yellow-500',
       textColor: 'text-yellow-500',
-      icon: ExclamationTriangleIcon,
+      icon: ExclamationIcon,
     }"
   />
 </template>
