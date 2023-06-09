@@ -1,16 +1,33 @@
 <script setup>
+import VFilters from "@/components/VFilters.vue"
 import VLoading from "@/components/VLoading.vue"
 import VSpin from "@/components/VSpin.vue"
 import Input from "@/components/form/Input.vue"
 import { gueriteBookingService } from "@/services"
 import { useNotificationStore } from "@/stores/notifications"
-import { collection, query } from "firebase/firestore"
+import { collection, orderBy, query } from "firebase/firestore"
 import { useForm } from "vee-validate"
-import { reactive } from "vue"
+import { computed, reactive, ref } from "vue"
 import { useCollection, useFirestore } from "vuefire"
+
+const sortOptions = ref([
+  {
+    name: "Identifiant",
+    id: "identifier",
+  },
+  {
+    name: "Montant",
+    id: "amount",
+  },
+  {
+    name: "Etat",
+    id: "used",
+  },
+])
 
 const db = useFirestore()
 const notifStore = useNotificationStore()
+const sortby = ref(sortOptions.value[0])
 const { handleSubmit, resetForm } = useForm({
   initialValues: {
     identifier: "1814-",
@@ -22,15 +39,24 @@ const state = reactive({
 })
 
 const { pending, data } = useCollection(
-  query(
-    collection(db, "gueriteCoupon").withConverter({
-      fromFirestore: (snapshot) => {
-        return { id: snapshot.id, data: snapshot.data() }
-      },
-      toFirestore: (product) => product,
-    })
-  )
+  computed(() => {
+    return query(
+      collection(db, "gueriteCoupon").withConverter({
+        fromFirestore: (snapshot) => {
+          return { id: snapshot.id, data: snapshot.data() }
+        },
+        toFirestore: (product) => product,
+      }),
+      orderBy(sortby.value.id)
+    )
+  })
 )
+
+const onSortChange = (option) => {
+  let index = sortOptions.value.map((n) => n.id).indexOf(option.id)
+  if (index == -1) return
+  sortby.value = sortOptions.value[index]
+}
 
 const onSubmit = handleSubmit(async (values) => {
   state.sendLoading = true
@@ -77,6 +103,14 @@ const onSubmit = handleSubmit(async (values) => {
               </div>
             </div>
           </form>
+        </div>
+        <div class="lg:col-span-2 flex justify-end">
+          <VFilters
+            :options="sortOptions"
+            :current="sortby"
+            label="Trier par"
+            @on-change="onSortChange"
+          />
         </div>
         <div
           class="lg:col-span-2 grid grid-cols-1 gap-y-6 sm:grid-cols-4 sm:gap-x-8"
