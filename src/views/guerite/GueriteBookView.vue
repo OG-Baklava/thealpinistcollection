@@ -82,14 +82,14 @@ onMounted(async () => {
                   {{ state.data.customerInfos.phone }}
                 </dd>
               </div>
-              <div class="sm:col-span-2">
+              <!-- <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-primary">
                   Allergies ou intolérances
                 </dt>
                 <dd class="mt-1 text-sm text-white">
                   {{ state.data.customerInfos.notes }}
                 </dd>
-              </div>
+              </div> -->
             </dl>
           </div>
           <!-- <div class="p-4 flex justify-end">
