@@ -192,7 +192,7 @@ const total = computed(
   <div>
     <section>
       <div class="relative isolate bg-neutral-900">
-        <div class="mx-auto max-w-2xl lg:max-w-4xl">
+        <div class="mx-auto max-w-2xl lg:max-w-5xl">
           <figure>
             <blockquote class="text-center text-lg text-neutral-300">
               <p>
@@ -221,6 +221,12 @@ const total = computed(
                 reste le même. Les repas se déroulent sur le midi avec un rendez
                 vous fixé à 11h15 sur le parking des Remparts dans le vieux
                 bourg de Saillon.
+              </p>
+              <p class="italic mt-4">
+                « L’infrastructure de la cuisine de notre guerite ne permet pas
+                à Pierre de s’adapter à vos différentes intolérances ou
+                allergies. Nous nous en excusons d’avance et nous vous
+                remercions pour votre compréhension. »
               </p>
             </blockquote>
             <figcaption class="mt-10">
