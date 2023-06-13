@@ -7,6 +7,7 @@ const tabs = [
   { name: "Nouveau produit", to: { name: "AdminIndex" }, current: true },
   { name: "Produits", to: { name: "AdminProducts" } },
   { name: "Réservation Guérite", to: { name: "AdminGueriteBooking" } },
+  { name: "Menu Guérite", to: { name: "AdminGueriteMenu" } },
   { name: "Coupon Guérite", to: { name: "AdminGueriteCoupon" } },
 ]
 
