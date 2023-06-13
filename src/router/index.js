@@ -205,6 +205,11 @@ const routes = [
         component: () => import("@/views/admin/AdminGueriteBookingView.vue"),
       },
       {
+        path: "booking/guerite-menu",
+        name: "AdminGueriteMenu",
+        component: () => import("@/views/admin/AdminGueriteMenuView.vue"),
+      },
+      {
         path: "booking/coupon/guerite",
         name: "AdminGueriteCoupon",
         component: () => import("@/views/admin/AdminGueriteCouponView.vue"),
