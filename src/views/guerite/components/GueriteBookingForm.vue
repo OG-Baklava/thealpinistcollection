@@ -1,6 +1,5 @@
 <script setup>
 import Input from "@/components/form/Input.vue"
-import Textarea from "@/components/form/Textarea.vue"
 
 import { useForm } from "vee-validate"
 
@@ -32,14 +31,14 @@ const onSubmit = handleSubmit((values) => {
           placeholder="+41 00 000 00 00"
         />
       </div>
-      <div class="sm:col-span-2">
+      <!-- <div class="sm:col-span-2">
         <Textarea
           identifier="notes"
           label="Allergies ou intolérances"
           :rows="4"
           :required="false"
         />
-      </div>
+      </div> -->
       <div class="sm:col-start-2">
         <button type="submit" class="button-primary float-right">
           Continuer
