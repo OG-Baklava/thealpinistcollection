@@ -4,7 +4,8 @@ import LayoutContainer from "@/layouts/LayoutContainer.vue"
 import { useAuthUserStore } from "@/stores/auth"
 
 const tabs = [
-  { name: "Nouveau produit", to: { name: "AdminIndex" }, current: true },
+  { name: "Paramètre généraux", to: { name: "AdminIndex" } },
+  { name: "Nouveau produit", to: { name: "AdminAddProduct" } },
   { name: "Produits", to: { name: "AdminProducts" } },
   { name: "Réservation Guérite", to: { name: "AdminGueriteBooking" } },
   { name: "Menu Guérite", to: { name: "AdminGueriteMenu" } },

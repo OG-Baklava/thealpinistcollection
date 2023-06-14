@@ -200,6 +200,11 @@ const routes = [
         component: () => import("@/views/admin/AdminIndexView.vue"),
       },
       {
+        path: "add-product",
+        name: "AdminAddProduct",
+        component: () => import("@/views/admin/AdminAddProductView.vue"),
+      },
+      {
         path: "booking/guerite",
         name: "AdminGueriteBooking",
         component: () => import("@/views/admin/AdminGueriteBookingView.vue"),
