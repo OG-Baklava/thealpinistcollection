@@ -14,6 +14,7 @@ class BookingService {
     this.collection = collection(db, this.collectionName)
     this.db = db
     this.gueriteRef = doc(this.db, this.collectionName, "guerite")
+    this.generalRef = doc(this.db, this.collectionName, "general")
   }
   async getGueriteSettings() {
     const document = await getDoc(this.gueriteRef)
@@ -25,6 +26,15 @@ class BookingService {
     })
     const document = await getDoc(this.gueriteRef)
     return document.data()
+  }
+  async getGeneralSettins() {
+    const document = await getDoc(this.generalRef)
+    return document.data()
+  }
+  async updateSettings(values) {
+    await updateDoc(this.generalRef, {
+      ...values,
+    })
   }
 }
 

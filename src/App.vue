@@ -1,16 +1,22 @@
 <script setup>
-import { onBeforeMount } from "vue"
+import { onBeforeMount, onMounted } from "vue"
+import VBanner from "./components/VBanner.vue"
+import VModal from "./components/VModal.vue"
 import VNoficiations from "./components/VNotifications.vue"
 import VTransitionFade from "./components/VTransitionFade.vue"
 import Footer from "./layouts/Footer.vue"
 import Header from "./layouts/Header.vue"
 import { useAuthUserStore } from "./stores/auth"
-import VModal from "./components/VModal.vue"
+import { useSettingsStore } from "./stores/settings"
 
 const store = useAuthUserStore()
+const settings = useSettingsStore()
+
 onBeforeMount(() => {
   store.fetchUser()
 })
+
+onMounted(() => settings.fetch())
 </script>
 
 <template>
@@ -28,5 +34,6 @@ onBeforeMount(() => {
   <teleport to="body">
     <VNoficiations />
     <VModal />
+    <VBanner />
   </teleport>
 </template>
