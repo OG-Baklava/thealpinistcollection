@@ -11,8 +11,8 @@ const props = defineProps({
     default: false,
   },
   val: {
-    type: String,
-    default: "",
+    type: Boolean,
+    default: false,
   },
 })
 
