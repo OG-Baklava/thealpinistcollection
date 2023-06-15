@@ -5,6 +5,7 @@ import { useAuthUserStore } from "@/stores/auth"
 import { useCartStore } from "@/stores/cart"
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue"
 import {
+  FingerPrintIcon,
   MenuIcon,
   ShoppingBagIcon,
   UserIcon,
@@ -63,6 +64,12 @@ watch(
               <div class="hidden h-full lg:flex">
                 <!-- Flyout menus -->
                 <div class="h-full flex justify-center space-x-8">
+                  <router-link
+                    to="/"
+                    active-class="!text-primary"
+                    class="flex items-center text-sm font-medium transition-colors text-white hover:text-primary"
+                    >Accueil</router-link
+                  >
                   <router-link
                     v-for="page in navigation"
                     :key="page.name"
@@ -252,6 +259,22 @@ watch(
                 </div>
                 <div class="mt-6">
                   <nav class="grid gap-y-8">
+                    <router-link v-slot="{ href, navigate }" to="/" custom>
+                      <a
+                        :href="href"
+                        class="-m-3 p-3 flex items-center rounded-md transition-all hover:bg-neutral-800 hover:text-primary"
+                        @click.prevent="navigate(), close()"
+                      >
+                        <component
+                          :is="FingerPrintIcon"
+                          class="flex-shrink-0 h-6 w-6 text-primary"
+                          aria-hidden="true"
+                        />
+                        <span class="ml-3 text-base font-medium text-white"
+                          >Accueil</span
+                        >
+                      </a>
+                    </router-link>
                     <router-link
                       v-for="item in navigation"
                       :key="item.name"
