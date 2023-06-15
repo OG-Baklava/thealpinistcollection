@@ -12,8 +12,8 @@
   "dependencies": {
     "@stripe/stripe-js": "^1.54.0",
     "@vuepic/vue-datepicker": "^3.6.8",
-    "firebase": "^9.22.1",
-    "pinia": "^2.1.3",
+    "firebase": "^9.22.2",
+    "pinia": "^2.1.4",
     "v-calendar": "3.0.0-alpha.8",
     "vee-validate": "4.8.6",
     "vue": "^3.3.4",
@@ -21,7 +21,7 @@
     "vuefire": "3.0.1"
   },
   "devDependencies": {
-    "@headlessui/vue": "^1.7.13",
+    "@headlessui/vue": "^1.7.14",
     "@heroicons/vue": "^1.0.6",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
@@ -29,7 +29,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.41.0",
+    "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-vue": "^8.7.1",
     "postcss": "^8.4.24",
