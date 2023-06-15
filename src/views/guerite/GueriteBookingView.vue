@@ -9,6 +9,7 @@ import { bookingService, gueriteBookingService } from "@/services"
 import { Switch, SwitchGroup, SwitchLabel } from "@headlessui/vue"
 import { loadStripe } from "@stripe/stripe-js"
 
+import { DateCustom } from "@/utils"
 import {
   Timestamp,
   collection,
@@ -55,6 +56,7 @@ const steps = ref([
 ])
 const currentStep = ref(steps.value[0])
 const customerInfos = ref(null)
+const minDate = ref(new DateCustom().addDays(2).setHours(0, 0, 0, 0))
 
 onMounted(async () => {
   state.loading = true
@@ -82,7 +84,9 @@ const { pending, data } = useCollection(
 
 const dates = computed(() => {
   if (pending.value == true) return []
-  return data.value.map((record) => record.data.date.toDate())
+  return data.value
+    .map((record) => record.data.date.toDate())
+    .filter((d) => d.setHours(0, 0, 0, 0) >= minDate.value)
 })
 
 const attr = computed(() => {
@@ -307,6 +311,7 @@ const total = computed(
               is-expanded
               :available-dates="dates"
               :attributes="attr"
+              :min-date="minDate"
               @dayclick="onSelect"
             />
           </div>

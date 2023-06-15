@@ -3,4 +3,12 @@ const time2date = (timestamp) =>
 
 const fmtDate = (date) => Intl.DateTimeFormat("fr-CH").format(date)
 
-export { time2date, fmtDate }
+class DateCustom extends Date {
+  addDays(days) {
+    const date = new DateCustom(this.valueOf())
+    date.setDate(date.getDate() + days)
+    return date
+  }
+}
+
+export { DateCustom, fmtDate, time2date }
