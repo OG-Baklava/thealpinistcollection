@@ -195,7 +195,7 @@ const total = computed(
 <template>
   <div>
     <section>
-      <div class="relative isolate bg-neutral-900">
+      <div class="relative isolate">
         <div class="mx-auto max-w-2xl lg:max-w-5xl">
           <figure>
             <blockquote class="text-center text-lg text-neutral-300">
