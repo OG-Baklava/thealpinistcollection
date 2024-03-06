@@ -1,5 +1,5 @@
 <script setup>
-import { CheckCircleIcon } from "@heroicons/vue/solid"
+import { XCircleIcon } from "@heroicons/vue/solid"
 import VAlert from "./components/Alert.vue"
 
 const props = defineProps({
@@ -12,12 +12,12 @@ const props = defineProps({
     :data="{
       title: props.title,
       text: props.text,
-      bgColor: 'bg-green-500/10',
-      ringColor: 'ring-green-500/20',
-      iconColor: 'text-green-400',
-      titleColor: 'text-green-400',
-      textColor: 'text-green-400',
-      icon: CheckCircleIcon,
+      bgColor: 'bg-red-500/10',
+      ringColor: 'ring-red-500/20',
+      iconColor: 'text-red-400',
+      titleColor: 'text-red-400',
+      textColor: 'text-red-400',
+      icon: XCircleIcon,
     }"
   />
 </template>
